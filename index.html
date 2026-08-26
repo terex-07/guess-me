@@ -3,1099 +3,922 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>Who Am I? — Anime Edition</title>
+<title>WHO AM I? — Anime Challenge</title>
 
-    <style>
+<style>
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
 
-        html {
-            scroll-behavior: smooth;
-        }
+    min-height: 100vh;
 
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        body {
+    color: white;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(100, 60, 255, .18),
+            transparent 30%
+        ),
 
-            min-height: 100vh;
+        radial-gradient(
+            circle at 80% 90%,
+            rgba(255, 50, 120, .15),
+            transparent 30%
+        ),
 
-            color: white;
+        #070812;
 
-            background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(112, 65, 255, 0.20),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(255, 55, 125, 0.18),
-                    transparent 30%
-                ),
-                #080914;
+    overflow-x: hidden;
+}
 
-            overflow-x: hidden;
-        }
 
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-        /* =====================================================
-           BACKGROUND
-        ===================================================== */
+body::before {
 
-        .background-glow {
+    content: "";
 
-            position: fixed;
+    position: fixed;
 
-            width: 500px;
-            height: 500px;
+    width: 400px;
+    height: 400px;
 
-            border-radius: 50%;
+    border-radius: 50%;
 
-            filter: blur(100px);
+    background: #653cff;
 
-            opacity: 0.15;
+    filter: blur(150px);
 
-            pointer-events: none;
+    opacity: .08;
 
-            z-index: -1;
+    top: -150px;
+    left: -150px;
 
-        }
+    pointer-events: none;
 
+}
 
-        .glow-one {
+body::after {
 
-            background: #7041ff;
+    content: "";
 
-            top: -200px;
-            left: -200px;
+    position: fixed;
 
-        }
+    width: 350px;
+    height: 350px;
 
+    border-radius: 50%;
 
-        .glow-two {
+    background: #ff3e79;
 
-            background: #ff357d;
+    filter: blur(150px);
 
-            bottom: -200px;
-            right: -200px;
+    opacity: .08;
 
-        }
+    bottom: -150px;
+    right: -150px;
 
+    pointer-events: none;
 
-        /* =====================================================
-           NAVBAR
-        ===================================================== */
+}
 
-        nav {
 
-            width: 100%;
+/* =========================================================
+   NAVBAR
+========================================================= */
 
-            height: 70px;
+nav {
 
-            display: flex;
+    height: 70px;
 
-            align-items: center;
+    padding: 0 7%;
 
-            justify-content: space-between;
+    display: flex;
 
-            padding: 0 7%;
+    align-items: center;
 
-            border-bottom:
-                1px solid rgba(255,255,255,0.08);
+    justify-content: space-between;
 
-            background:
-                rgba(8,9,20,0.75);
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 
-            backdrop-filter: blur(15px);
+    background:
+        rgba(5,6,15,.75);
 
-            position: relative;
+    backdrop-filter: blur(15px);
 
-            z-index: 10;
-        }
+}
 
+.logo {
 
-        .logo {
+    font-size: 21px;
 
-            font-size: 22px;
+    font-weight: 900;
 
-            font-weight: 800;
+    letter-spacing: 1px;
 
-            letter-spacing: 1px;
-        }
+}
 
+.logo span {
 
-        .logo span {
+    color: #ff4f8b;
 
-            color: #ff4f8b;
-        }
+}
 
+.mode {
 
-        .nav-right {
+    color: #9297b1;
 
-            display: flex;
+    font-size: 13px;
 
-            gap: 20px;
+}
 
-            align-items: center;
-        }
 
+/* =========================================================
+   MAIN
+========================================================= */
 
-        .nav-stat {
+main {
 
-            color: #bfc3d9;
+    width: min(950px, 92%);
 
-            font-size: 14px;
+    margin: auto;
 
-        }
+    padding: 45px 0 80px;
 
+}
 
-        /* =====================================================
-           MAIN
-        ===================================================== */
 
-        main {
+/* =========================================================
+   HEADER
+========================================================= */
 
-            width: min(1100px, 92%);
+.header {
 
-            margin: 0 auto;
+    text-align: center;
 
-            padding: 45px 0 70px;
-        }
+    margin-bottom: 30px;
 
+}
 
-        /* =====================================================
-           HEADER
-        ===================================================== */
+.badge {
 
-        .game-header {
+    display: inline-block;
 
-            text-align: center;
+    padding: 7px 15px;
 
-            margin-bottom: 35px;
-        }
+    border-radius: 30px;
 
+    background:
+        rgba(255,70,130,.1);
 
-        .badge {
+    border:
+        1px solid rgba(255,70,130,.25);
 
-            display: inline-block;
+    color: #ff6a9d;
 
-            padding: 7px 15px;
+    font-size: 12px;
 
-            border-radius: 50px;
+    font-weight: 800;
 
-            background:
-                rgba(255,79,139,0.12);
+    letter-spacing: 1.5px;
 
-            border:
-                1px solid rgba(255,79,139,0.3);
+    margin-bottom: 15px;
 
-            color: #ff6a9d;
+}
 
-            font-size: 13px;
+h1 {
 
-            font-weight: 700;
+    font-size:
+        clamp(42px, 8vw, 72px);
 
-            letter-spacing: 1px;
+    line-height: 1;
 
-            margin-bottom: 15px;
-        }
+    margin-bottom: 15px;
 
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #cbbfff,
+            #ff6b9d
+        );
 
-        h1 {
+    -webkit-background-clip: text;
 
-            font-size:
-                clamp(40px, 7vw, 72px);
+    color: transparent;
 
-            line-height: 1;
+}
 
-            margin-bottom: 15px;
+.subtitle {
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #c8b9ff,
-                    #ff6a9d
-                );
+    color: #8f94ad;
 
-            -webkit-background-clip: text;
+    max-width: 620px;
 
-            background-clip: text;
+    margin: auto;
 
-            color: transparent;
-        }
+    line-height: 1.6;
 
+}
 
-        .subtitle {
 
-            color: #9da3bd;
+/* =========================================================
+   HUD
+========================================================= */
 
-            font-size: 16px;
+.hud {
 
-            max-width: 650px;
+    display: grid;
 
-            margin: auto;
+    grid-template-columns:
+        repeat(5, 1fr);
 
-            line-height: 1.6;
-        }
+    gap: 10px;
 
+    margin-bottom: 18px;
 
-        /* =====================================================
-           GAME HUD
-        ===================================================== */
+}
 
-        .hud {
+.stat {
 
-            display: grid;
+    padding: 14px 8px;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    text-align: center;
 
-            gap: 14px;
+    border-radius: 13px;
 
-            margin-bottom: 20px;
-        }
+    background:
+        rgba(255,255,255,.045);
 
+    border:
+        1px solid rgba(255,255,255,.08);
 
-        .hud-card {
+}
 
-            background:
-                rgba(255,255,255,0.05);
+.stat-label {
 
-            border:
-                1px solid rgba(255,255,255,0.09);
+    font-size: 10px;
 
-            border-radius: 15px;
+    color: #777d98;
 
-            padding: 15px;
+    text-transform: uppercase;
 
-            text-align: center;
+    letter-spacing: 1px;
 
-            backdrop-filter: blur(10px);
-        }
+    margin-bottom: 5px;
 
+}
 
-        .hud-label {
+.stat-value {
 
-            color: #858ba5;
+    font-size: 19px;
 
-            font-size: 12px;
+    font-weight: 900;
 
-            text-transform: uppercase;
+}
 
-            letter-spacing: 1px;
 
-            margin-bottom: 6px;
-        }
+/* =========================================================
+   GAME
+========================================================= */
 
+.game {
 
-        .hud-value {
+    padding: 27px;
 
-            font-size: 22px;
+    border-radius: 23px;
 
-            font-weight: 800;
-        }
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
+        );
 
+    border:
+        1px solid rgba(255,255,255,.1);
 
-        #timer {
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.35);
 
-            color: #ff658f;
-        }
+    backdrop-filter: blur(15px);
 
+}
 
-        /* =====================================================
-           GAME CARD
-        ===================================================== */
 
-        .game-card {
+/* =========================================================
+   PROGRESS
+========================================================= */
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.075),
-                    rgba(255,255,255,0.025)
-                );
+.progress-top {
 
-            border:
-                1px solid rgba(255,255,255,0.1);
+    display: flex;
 
-            border-radius: 25px;
+    justify-content: space-between;
 
-            padding: 25px;
+    color: #777d98;
 
-            box-shadow:
-                0 25px 80px rgba(0,0,0,0.35);
+    font-size: 12px;
 
-            backdrop-filter: blur(18px);
+    margin-bottom: 8px;
 
-            overflow: hidden;
+}
 
-            position: relative;
-        }
+.progress {
 
+    height: 6px;
 
-        /* =====================================================
-           PROGRESS
-        ===================================================== */
+    background: #1d2030;
 
-        .progress-info {
+    border-radius: 10px;
 
-            display: flex;
+    overflow: hidden;
 
-            justify-content: space-between;
+    margin-bottom: 30px;
 
-            color: #8d93ad;
+}
 
-            font-size: 13px;
+.progress-fill {
 
-            margin-bottom: 8px;
-        }
+    height: 100%;
 
+    width: 0%;
 
-        .progress-bar {
+    background:
+        linear-gradient(
+            90deg,
+            #7041ff,
+            #ff4f8b
+        );
 
-            width: 100%;
+    transition:
+        width .4s ease;
 
-            height: 6px;
+}
 
-            background: #202236;
 
-            border-radius: 10px;
+/* =========================================================
+   QUESTION
+========================================================= */
 
-            overflow: hidden;
+.difficulty {
 
-            margin-bottom: 25px;
-        }
+    color: #ff658f;
 
+    font-size: 12px;
 
-        .progress-fill {
+    font-weight: 800;
 
-            height: 100%;
+    letter-spacing: 2px;
 
-            width: 0%;
+    margin-bottom: 10px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #7041ff,
-                    #ff4f8b
-                );
+}
 
-            transition:
-                width 0.4s ease;
-        }
+.question {
 
+    font-size: 26px;
 
-        /* =====================================================
-           CHARACTER AREA
-        ===================================================== */
+    font-weight: 800;
 
-        .character-area {
+    margin-bottom: 25px;
 
-            display: grid;
+}
 
-            grid-template-columns:
-                0.9fr 1.1fr;
 
-            gap: 35px;
+/* =========================================================
+   CLUES
+========================================================= */
 
-            align-items: center;
-        }
+.clues {
 
+    display: flex;
 
-        .character-photo {
+    flex-direction: column;
 
-            height: 480px;
+    gap: 10px;
 
-            border-radius: 20px;
+}
 
-            overflow: hidden;
+.clue {
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #16182a,
-                    #0e0f1b
-                );
+    padding: 17px;
 
-            position: relative;
+    border-radius: 13px;
 
-            display: flex;
+    background:
+        rgba(255,255,255,.035);
 
-            justify-content: center;
+    border:
+        1px solid rgba(255,255,255,.07);
 
-            align-items: center;
+    display: flex;
 
-            border:
-                1px solid rgba(255,255,255,0.08);
-        }
+    align-items: flex-start;
 
+    gap: 13px;
 
-        .character-photo img {
+    transition: .3s;
 
-            width: 100%;
+}
 
-            height: 100%;
+.clue-number {
 
-            object-fit: cover;
+    width: 28px;
+    height: 28px;
 
-            transition:
-                transform 0.5s ease,
-                filter 0.5s ease;
+    flex-shrink: 0;
 
-            filter:
-                brightness(0.72)
-                saturate(1.15);
-        }
+    border-radius: 50%;
 
+    display: flex;
 
-        .character-photo:hover img {
+    justify-content: center;
 
-            transform: scale(1.04);
+    align-items: center;
 
-        }
+    background:
+        rgba(112,65,255,.18);
 
+    color: #a995ff;
 
-        .photo-overlay {
+    font-size: 12px;
 
-            position: absolute;
+    font-weight: 900;
 
-            inset: 0;
+}
 
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(5,5,12,0.8),
-                    transparent 55%
-                );
+.clue-text {
 
-            pointer-events: none;
-        }
+    color: #c9ccda;
 
+    font-size: 14px;
 
-        .mystery-label {
+    line-height: 1.55;
 
-            position: absolute;
+}
 
-            top: 18px;
+.locked {
 
-            left: 18px;
+    opacity: .18;
 
-            padding: 8px 13px;
+    filter: blur(5px);
 
-            border-radius: 50px;
+    user-select: none;
 
-            background:
-                rgba(0,0,0,0.55);
+}
 
-            border:
-                1px solid rgba(255,255,255,0.12);
 
-            font-size: 12px;
+/* =========================================================
+   INPUT
+========================================================= */
 
-            font-weight: bold;
+.input-area {
 
-            letter-spacing: 1px;
+    display: flex;
 
-            backdrop-filter: blur(8px);
-        }
+    gap: 10px;
 
+    margin-top: 25px;
 
-        .question-mark {
+}
 
-            position: absolute;
+input {
 
-            font-size: 90px;
+    flex: 1;
 
-            font-weight: 900;
+    padding: 16px;
 
-            color: rgba(255,255,255,0.08);
+    border-radius: 12px;
 
-            user-select: none;
-        }
+    border:
+        1px solid rgba(255,255,255,.1);
 
+    outline: none;
 
-        /* =====================================================
-           CLUES
-        ===================================================== */
+    background:
+        rgba(0,0,0,.25);
 
-        .question-area {
+    color: white;
 
-            padding: 5px 5px 5px 0;
-        }
+    font-size: 15px;
 
+}
 
-        .question-title {
+input:focus {
 
-            color: #8f95af;
+    border-color: #7655ff;
 
-            text-transform: uppercase;
+    box-shadow:
+        0 0 0 3px
+        rgba(118,85,255,.12);
 
-            font-size: 12px;
+}
 
-            letter-spacing: 2px;
+button {
 
-            margin-bottom: 12px;
-        }
+    border: none;
 
+    cursor: pointer;
 
-        .clue-box {
+    font-weight: 800;
 
-            background:
-                rgba(255,255,255,0.045);
+    transition: .2s;
 
-            border:
-                1px solid rgba(255,255,255,0.08);
+}
 
-            border-radius: 15px;
+.guess {
 
-            padding: 18px;
+    padding: 0 24px;
 
-            margin-bottom: 12px;
+    border-radius: 12px;
 
-            display: flex;
+    color: white;
 
-            gap: 14px;
+    background:
+        linear-gradient(
+            135deg,
+            #7041ff,
+            #a25dff
+        );
 
-            align-items: flex-start;
+}
 
-            transition: 0.3s;
-        }
+.guess:hover {
 
+    transform:
+        translateY(-2px);
 
-        .clue-number {
+    box-shadow:
+        0 10px 25px
+        rgba(112,65,255,.3);
 
-            min-width: 30px;
+}
 
-            height: 30px;
 
-            border-radius: 50%;
+/* =========================================================
+   ACTIONS
+========================================================= */
 
-            display: flex;
+.actions {
 
-            align-items: center;
+    display: flex;
 
-            justify-content: center;
+    gap: 10px;
 
-            background:
-                rgba(112,65,255,0.18);
+    margin-top: 12px;
 
-            color: #ad96ff;
+}
 
-            font-weight: bold;
+.hint {
 
-            font-size: 13px;
-        }
+    padding: 10px 15px;
 
+    border-radius: 9px;
 
-        .clue-text {
+    background:
+        rgba(255,193,7,.08);
 
-            color: #d8dbea;
+    color: #ffd166;
 
-            line-height: 1.5;
+    border:
+        1px solid rgba(255,193,7,.15);
 
-            font-size: 15px;
-        }
+}
 
+.hint:hover {
 
-        .hidden-clue {
+    background:
+        rgba(255,193,7,.14);
 
-            filter: blur(7px);
+}
 
-            user-select: none;
+.next {
 
-            opacity: 0.25;
+    padding: 10px 15px;
 
-        }
+    border-radius: 9px;
 
+    background: white;
 
-        /* =====================================================
-           INPUT
-        ===================================================== */
+    color: #10111d;
 
-        .answer-form {
+    display: none;
 
-            display: flex;
+}
 
-            gap: 10px;
 
-            margin-top: 20px;
-        }
+/* =========================================================
+   MESSAGE
+========================================================= */
 
+.message {
 
-        #answerInput {
+    min-height: 25px;
 
-            flex: 1;
+    margin-top: 14px;
 
-            background:
-                rgba(0,0,0,0.25);
+    font-size: 14px;
 
-            border:
-                1px solid rgba(255,255,255,0.12);
+    font-weight: 700;
 
-            color: white;
+}
 
-            padding: 16px;
+.correct {
 
-            border-radius: 12px;
+    color: #5df0a6;
 
-            outline: none;
+}
 
-            font-size: 15px;
+.wrong {
 
-            transition: 0.3s;
-        }
+    color: #ff658f;
 
+}
 
-        #answerInput:focus {
+.info {
 
-            border-color: #7041ff;
+    color: #ffd166;
 
-            box-shadow:
-                0 0 0 3px rgba(112,65,255,0.12);
-        }
+}
 
 
-        #answerInput::placeholder {
+/* =========================================================
+   TIMER
+========================================================= */
 
-            color: #656b84;
-        }
+.timer-container {
 
+    margin-top: 20px;
 
-        .submit-btn {
+}
 
-            border: none;
+.timer-track {
 
-            border-radius: 12px;
+    height: 5px;
 
-            padding: 0 25px;
+    border-radius: 10px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7041ff,
-                    #9c65ff
-                );
+    background: #202333;
 
-            color: white;
+    overflow: hidden;
 
-            font-weight: 800;
+}
 
-            cursor: pointer;
+.timer-bar {
 
-            transition: 0.25s;
+    height: 100%;
 
-        }
+    width: 100%;
 
+    background:
+        linear-gradient(
+            90deg,
+            #5df0a6,
+            #ffd166,
+            #ff4f8b
+        );
 
-        .submit-btn:hover {
+    transition:
+        width 1s linear;
 
-            transform:
-                translateY(-2px);
+}
 
-            box-shadow:
-                0 10px 25px
-                rgba(112,65,255,0.3);
-        }
 
+/* =========================================================
+   GAME OVER
+========================================================= */
 
-        /* =====================================================
-           MESSAGE
-        ===================================================== */
+.overlay {
 
-        .message {
+    position: fixed;
 
-            min-height: 25px;
+    inset: 0;
 
-            margin-top: 14px;
+    background:
+        rgba(3,4,10,.9);
 
-            font-weight: 700;
+    backdrop-filter: blur(15px);
 
-            font-size: 14px;
-        }
+    display: none;
 
+    align-items: center;
 
-        .success {
+    justify-content: center;
 
-            color: #5df0a6;
-        }
+    z-index: 20;
 
+}
 
-        .error {
+.result {
 
-            color: #ff658f;
-        }
+    width: min(500px,90%);
 
+    padding: 40px 30px;
 
-        /* =====================================================
-           BUTTONS
-        ===================================================== */
+    text-align: center;
 
-        .bottom-actions {
+    border-radius: 23px;
 
-            display: flex;
+    background: #111322;
 
-            justify-content: center;
+    border:
+        1px solid rgba(255,255,255,.1);
 
-            margin-top: 25px;
+    animation:
+        pop .4s ease;
 
-        }
+}
 
+.result h2 {
 
-        .next-btn {
+    font-size: 38px;
 
-            border: none;
+    margin-bottom: 10px;
 
-            background:
-                #ffffff;
+}
 
-            color: #111321;
+.final-score {
 
-            padding: 13px 25px;
+    font-size: 65px;
 
-            border-radius: 10px;
+    font-weight: 900;
 
-            font-weight: 800;
+    margin: 15px;
 
-            cursor: pointer;
+    background:
+        linear-gradient(
+            90deg,
+            #7041ff,
+            #ff4f8b
+        );
 
-            display: none;
+    -webkit-background-clip: text;
 
-            transition: 0.25s;
-        }
+    color: transparent;
 
+}
 
-        .next-btn:hover {
+.rating {
 
-            transform:
-                translateY(-2px);
+    color: #aeb2c4;
 
-        }
+    line-height: 1.6;
 
+}
 
-        /* =====================================================
-           GAME OVER
-        ===================================================== */
+.restart {
 
-        .game-over {
+    margin-top: 22px;
 
-            position: fixed;
+    padding: 14px 27px;
 
-            inset: 0;
+    border-radius: 10px;
 
-            display: none;
+    color: white;
 
-            align-items: center;
+    background:
+        linear-gradient(
+            135deg,
+            #7041ff,
+            #ff4f8b
+        );
 
-            justify-content: center;
+}
 
-            background:
-                rgba(4,5,12,0.88);
 
-            backdrop-filter: blur(15px);
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 
-            z-index: 100;
-        }
+@keyframes pop {
 
+    from {
 
-        .game-over-card {
+        opacity: 0;
 
-            width: min(500px, 90%);
+        transform: scale(.85);
 
-            background:
-                #111322;
+    }
 
-            border:
-                1px solid rgba(255,255,255,0.1);
+    to {
 
-            border-radius: 25px;
+        opacity: 1;
 
-            padding: 45px 30px;
+        transform: scale(1);
 
-            text-align: center;
+    }
 
-            box-shadow:
-                0 30px 100px rgba(0,0,0,0.5);
+}
 
-            animation:
-                popup 0.4s ease;
-        }
+@keyframes shake {
 
+    0%,100% {
+        transform: translateX(0);
+    }
 
-        .game-over-card h2 {
+    25% {
+        transform: translateX(-8px);
+    }
 
-            font-size: 42px;
+    50% {
+        transform: translateX(8px);
+    }
 
-            margin-bottom: 12px;
-        }
+    75% {
+        transform: translateX(-5px);
+    }
 
+}
 
-        .final-score {
+.shake {
 
-            font-size: 60px;
+    animation:
+        shake .4s ease;
 
-            font-weight: 900;
+}
 
-            color: #ff5d91;
 
-            margin: 15px 0;
-        }
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
+@media(max-width:700px) {
 
-        .restart-btn {
+    .hud {
 
-            border: none;
+        grid-template-columns:
+            repeat(2,1fr);
 
-            padding: 14px 30px;
+    }
 
-            border-radius: 10px;
+    .hud .stat:last-child {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7041ff,
-                    #ff4f8b
-                );
+        grid-column:
+            span 2;
 
-            color: white;
+    }
 
-            font-weight: 800;
+}
 
-            cursor: pointer;
+@media(max-width:500px) {
 
-            font-size: 15px;
+    main {
 
-            margin-top: 15px;
-        }
+        width: 94%;
 
+    }
 
-        /* =====================================================
-           ANIMATIONS
-        ===================================================== */
+    .game {
 
-        @keyframes popup {
+        padding: 18px;
 
-            from {
+    }
 
-                opacity: 0;
+    .input-area {
 
-                transform:
-                    scale(0.85);
+        flex-direction: column;
 
-            }
+    }
 
-            to {
+    .guess {
 
-                opacity: 1;
+        height: 50px;
 
-                transform:
-                    scale(1);
+    }
 
-            }
+    .question {
 
-        }
+        font-size: 21px;
 
+    }
 
-        @keyframes correct {
+}
 
-            0% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(1.03);
-            }
-
-            60% {
-                transform: scale(0.98);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-
-        }
-
-
-        @keyframes shake {
-
-            0%, 100% {
-                transform: translateX(0);
-            }
-
-            20% {
-                transform: translateX(-10px);
-            }
-
-            40% {
-                transform: translateX(10px);
-            }
-
-            60% {
-                transform: translateX(-7px);
-            }
-
-            80% {
-                transform: translateX(7px);
-            }
-
-        }
-
-
-        .correct-animation {
-
-            animation:
-                correct 0.5s ease;
-
-        }
-
-
-        .wrong-animation {
-
-            animation:
-                shake 0.45s ease;
-
-        }
-
-
-        /* =====================================================
-           CONFETTI
-        ===================================================== */
-
-        .confetti {
-
-            position: fixed;
-
-            width: 8px;
-
-            height: 12px;
-
-            top: -20px;
-
-            z-index: 200;
-
-            animation:
-                fall 2s linear forwards;
-
-        }
-
-
-        @keyframes fall {
-
-            to {
-
-                transform:
-                    translateY(110vh)
-                    rotate(720deg);
-
-                opacity: 0;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media (max-width: 800px) {
-
-            .character-area {
-
-                grid-template-columns: 1fr;
-
-            }
-
-
-            .character-photo {
-
-                height: 380px;
-
-            }
-
-
-            .hud {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-            }
-
-        }
-
-
-        @media (max-width: 500px) {
-
-            nav {
-
-                padding: 0 20px;
-
-            }
-
-
-            .nav-right {
-
-                display: none;
-
-            }
-
-
-            main {
-
-                width: 94%;
-
-            }
-
-
-            .game-card {
-
-                padding: 15px;
-
-            }
-
-
-            .character-photo {
-
-                height: 330px;
-
-            }
-
-
-            .answer-form {
-
-                flex-direction: column;
-
-            }
-
-
-            .submit-btn {
-
-                height: 50px;
-
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -1103,1536 +926,1577 @@
 <body>
 
 
-    <div class="background-glow glow-one"></div>
+<nav>
 
-    <div class="background-glow glow-two"></div>
+    <div class="logo">
+        WHO <span>AM I?</span>
+    </div>
+
+    <div class="mode">
+        🎌 HARDCORE ANIME EDITION
+    </div>
+
+</nav>
 
 
-    <!-- =====================================================
-         NAVBAR
-    ====================================================== -->
+<main>
 
-    <nav>
 
-        <div class="logo">
-            WHO <span>AM I?</span>
+<div class="header">
+
+    <div class="badge">
+        ⚔️ 20 CHARACTER CHALLENGE
+    </div>
+
+    <h1>
+        Who Am I?
+    </h1>
+
+    <p class="subtitle">
+
+        No pictures. No multiple choice.
+        No easy answers.
+
+        Use the clues, trust your anime knowledge,
+        and identify the character.
+
+    </p>
+
+</div>
+
+
+<!-- HUD -->
+
+<div class="hud">
+
+    <div class="stat">
+
+        <div class="stat-label">
+            Score
         </div>
 
-        <div class="nav-right">
-
-            <div class="nav-stat">
-                🎌 Anime Edition
-            </div>
-
-            <div class="nav-stat">
-                v1.0
-            </div>
-
+        <div
+            class="stat-value"
+            id="score"
+        >
+            0
         </div>
 
-    </nav>
+    </div>
 
 
+    <div class="stat">
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
+        <div class="stat-label">
+            Lives
+        </div>
 
-    <main>
+        <div
+            class="stat-value"
+            id="lives"
+        >
+            ❤️❤️❤️
+        </div>
 
+    </div>
 
-        <section class="game-header">
 
-            <div class="badge">
-                🔥 GUESS THE CHARACTER
-            </div>
+    <div class="stat">
 
-            <h1>
-                Who Am I?
-            </h1>
+        <div class="stat-label">
+            Streak
+        </div>
 
-            <p class="subtitle">
+        <div
+            class="stat-value"
+            id="streak"
+        >
+            0 🔥
+        </div>
 
-                Think you know anime?
+    </div>
 
-                Identify the character from their clues
-                and prove your knowledge of the anime world.
 
-            </p>
+    <div class="stat">
 
-        </section>
+        <div class="stat-label">
+            Question
+        </div>
 
+        <div
+            class="stat-value"
+            id="questionNumber"
+        >
+            1/20
+        </div>
 
+    </div>
 
-        <!-- =================================================
-             HUD
-        ================================================== -->
 
-        <section class="hud">
+    <div class="stat">
 
-            <div class="hud-card">
+        <div class="stat-label">
+            Time
+        </div>
 
-                <div class="hud-label">
-                    Score
-                </div>
+        <div
+            class="stat-value"
+            id="time"
+        >
+            20
+        </div>
 
-                <div
-                    class="hud-value"
-                    id="score"
-                >
-                    0
-                </div>
+    </div>
 
-            </div>
+</div>
 
 
-            <div class="hud-card">
+<!-- GAME -->
 
-                <div class="hud-label">
-                    Lives
-                </div>
+<div
+    class="game"
+    id="game"
+>
 
-                <div
-                    class="hud-value"
-                    id="lives"
-                >
-                    ❤️❤️❤️
-                </div>
 
-            </div>
+    <div class="progress-top">
 
+        <span>
+            Challenge Progress
+        </span>
 
-            <div class="hud-card">
+        <span id="difficultyText">
+            EASY
+        </span>
 
-                <div class="hud-label">
-                    Streak
-                </div>
+    </div>
 
-                <div
-                    class="hud-value"
-                    id="streak"
-                >
-                    0 🔥
-                </div>
 
-            </div>
+    <div class="progress">
 
+        <div
+            class="progress-fill"
+            id="progress"
+        ></div>
 
-            <div class="hud-card">
+    </div>
 
-                <div class="hud-label">
-                    Time
-                </div>
-
-                <div
-                    class="hud-value"
-                    id="timer"
-                >
-                    30
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             GAME CARD
-        ================================================== -->
-
-        <section class="game-card" id="gameCard">
-
-
-            <div class="progress-info">
-
-                <span>
-                    Question
-                    <span id="questionNumber">1</span>
-                    / 10
-                </span>
-
-                <span>
-                    Anime Character
-                </span>
-
-            </div>
-
-
-            <div class="progress-bar">
-
-                <div
-                    class="progress-fill"
-                    id="progressFill"
-                ></div>
-
-            </div>
-
-
-
-            <div class="character-area">
-
-
-                <!-- CHARACTER -->
-
-                <div class="character-photo">
-
-                    <img
-                        id="characterImage"
-                        src=""
-                        alt="Mystery anime character"
-                    >
-
-                    <div class="photo-overlay"></div>
-
-                    <div class="mystery-label">
-                        MYSTERY CHARACTER
-                    </div>
-
-                    <div class="question-mark">
-                        ?
-                    </div>
-
-                </div>
-
-
-
-                <!-- QUESTION -->
-
-                <div class="question-area">
-
-                    <div class="question-title">
-                        WHO AM I?
-                    </div>
-
-
-                    <div class="clue-box">
-
-                        <div class="clue-number">
-                            1
-                        </div>
-
-                        <div
-                            class="clue-text"
-                            id="clue1"
-                        >
-                            Loading clue...
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="clue-box hidden-clue"
-                        id="clueBox2"
-                    >
-
-                        <div class="clue-number">
-                            2
-                        </div>
-
-                        <div
-                            class="clue-text"
-                            id="clue2"
-                        >
-                            More clues will appear after an incorrect guess.
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="clue-box hidden-clue"
-                        id="clueBox3"
-                    >
-
-                        <div class="clue-number">
-                            3
-                        </div>
-
-                        <div
-                            class="clue-text"
-                            id="clue3"
-                        >
-                            One final clue...
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ANSWER -->
-
-                    <div class="answer-form">
-
-                        <input
-                            type="text"
-                            id="answerInput"
-                            placeholder="Enter character name..."
-                            autocomplete="off"
-                        >
-
-                        <button
-                            class="submit-btn"
-                            onclick="checkAnswer()"
-                        >
-                            GUESS
-                        </button>
-
-                    </div>
-
-
-                    <div
-                        class="message"
-                        id="message"
-                    ></div>
-
-
-                    <div class="bottom-actions">
-
-                        <button
-                            class="next-btn"
-                            id="nextButton"
-                            onclick="nextQuestion()"
-                        >
-                            NEXT CHARACTER →
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =====================================================
-         GAME OVER
-    ====================================================== -->
 
     <div
-        class="game-over"
-        id="gameOver"
+        class="difficulty"
+        id="difficulty"
     >
+        DIFFICULTY: EASY
+    </div>
 
-        <div class="game-over-card">
 
-            <div class="badge">
-                GAME COMPLETE
+    <div class="question">
+
+        Identify the anime character.
+
+    </div>
+
+
+    <!-- CLUES -->
+
+    <div class="clues">
+
+
+        <div class="clue">
+
+            <div class="clue-number">
+                1
             </div>
-
-            <h2>
-                🎌 Nice Run!
-            </h2>
-
-            <p>
-                You finished the anime challenge.
-            </p>
 
             <div
-                class="final-score"
-                id="finalScore"
+                class="clue-text"
+                id="clue1"
             >
-                0
             </div>
 
-            <p>
-                Final Score
-            </p>
+        </div>
 
-            <button
-                class="restart-btn"
-                onclick="restartGame()"
+
+        <div
+            class="clue locked"
+            id="clueBox2"
+        >
+
+            <div class="clue-number">
+                2
+            </div>
+
+            <div
+                class="clue-text"
+                id="clue2"
             >
-                PLAY AGAIN
-            </button>
+            </div>
+
+        </div>
+
+
+        <div
+            class="clue locked"
+            id="clueBox3"
+        >
+
+            <div class="clue-number">
+                3
+            </div>
+
+            <div
+                class="clue-text"
+                id="clue3"
+            >
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ANSWER -->
+
+    <div class="input-area">
+
+        <input
+            id="answer"
+            type="text"
+            placeholder="Type the character's name..."
+            autocomplete="off"
+        >
+
+        <button
+            class="guess"
+            onclick="guess()"
+        >
+            GUESS
+        </button>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="hint"
+            onclick="useHint()"
+            id="hintButton"
+        >
+            💡 HINT (-50)
+        </button>
+
+        <button
+            class="next"
+            id="nextButton"
+            onclick="nextQuestion()"
+        >
+            NEXT →
+        </button>
+
+    </div>
+
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+
+    <!-- TIMER -->
+
+    <div class="timer-container">
+
+        <div class="timer-track">
+
+            <div
+                class="timer-bar"
+                id="timerBar"
+            ></div>
 
         </div>
 
     </div>
 
 
+</div>
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script>
-
-
-        /* =====================================================
-           CHARACTER DATABASE
-        =====================================================
-
-           These are popular anime characters.
-
-           The image is loaded from Jikan/MyAnimeList
-           automatically using the character ID.
-
-        ====================================================== */
-
-
-        const characters = [
-
-            {
-                name: "Naruto Uzumaki",
-                aliases: [
-                    "naruto",
-                    "naruto uzumaki"
-                ],
-                anime: "Naruto",
-                imageId: 20,
-                clues: [
-                    "He grew up dreaming of becoming the leader of his village.",
-                    "He has a powerful creature sealed inside him.",
-                    "His signature techniques include the Rasengan and Shadow Clone Jutsu."
-                ]
-            },
-
-
-            {
-                name: "Monkey D. Luffy",
-                aliases: [
-                    "luffy",
-                    "monkey d luffy",
-                    "monkey d. luffy"
-                ],
-                anime: "One Piece",
-                imageId: 40,
-                clues: [
-                    "He dreams of finding a legendary treasure.",
-                    "He wants to become the Pirate King.",
-                    "His body gained unusual abilities after eating a Devil Fruit."
-                ]
-            },
-
-
-            {
-                name: "Goku",
-                aliases: [
-                    "goku",
-                    "son goku"
-                ],
-                anime: "Dragon Ball",
-                imageId: 246,
-                clues: [
-                    "He is a Saiyan raised on Earth.",
-                    "He loves martial arts and constantly searches for stronger opponents.",
-                    "His famous transformations include Super Saiyan."
-                ]
-            },
-
-
-            {
-                name: "Gojo Satoru",
-                aliases: [
-                    "gojo",
-                    "gojo satoru",
-                    "satoru gojo"
-                ],
-                anime: "Jujutsu Kaisen",
-                imageId: 164909,
-                clues: [
-                    "He is a teacher at Tokyo Jujutsu High.",
-                    "He is famous for his powerful inherited technique.",
-                    "He is commonly seen wearing a blindfold."
-                ]
-            },
-
-
-            {
-                name: "Tanjiro Kamado",
-                aliases: [
-                    "tanjiro",
-                    "tanjiro kamado"
-                ],
-                anime: "Demon Slayer",
-                imageId: 146156,
-                clues: [
-                    "His family was attacked by demons.",
-                    "He joins a group of demon hunters.",
-                    "His sister accompanies him despite becoming a demon."
-                ]
-            },
-
-
-            {
-                name: "Eren Yeager",
-                aliases: [
-                    "eren",
-                    "eren yeager",
-                    "eren jaeger"
-                ],
-                anime: "Attack on Titan",
-                imageId: 40882,
-                clues: [
-                    "He lives inside enormous walls.",
-                    "He joins a military organization after a devastating attack.",
-                    "He possesses the ability to transform into a Titan."
-                ]
-            },
-
-
-            {
-                name: "Light Yagami",
-                aliases: [
-                    "light",
-                    "light yagami"
-                ],
-                anime: "Death Note",
-                imageId: 80,
-                clues: [
-                    "He discovers a supernatural notebook.",
-                    "The notebook has the power to kill people whose names are written in it.",
-                    "He begins calling himself Kira."
-                ]
-            },
-
-
-            {
-                name: "L",
-                aliases: [
-                    "l",
-                    "lawliet",
-                    "l lawliet"
-                ],
-                anime: "Death Note",
-                imageId: 71,
-                clues: [
-                    "He is one of the world's greatest detectives.",
-                    "He investigates the mysterious Kira case.",
-                    "He has an unusual sitting posture and a huge sweet tooth."
-                ]
-            },
-
-
-            {
-                name: "Levi Ackerman",
-                aliases: [
-                    "levi",
-                    "levi ackerman"
-                ],
-                anime: "Attack on Titan",
-                imageId: 45627,
-                clues: [
-                    "He is a highly respected soldier.",
-                    "He is known for his exceptional combat skills.",
-                    "He is particularly obsessed with cleanliness."
-                ]
-            },
-
-
-            {
-                name: "Ichigo Kurosaki",
-                aliases: [
-                    "ichigo",
-                    "ichigo kurosaki"
-                ],
-                anime: "Bleach",
-                imageId: 5,
-                clues: [
-                    "He can see supernatural beings.",
-                    "He becomes involved with Soul Reapers.",
-                    "His signature sword is called Zangetsu."
-                ]
-            },
-
-
-            {
-                name: "Saitama",
-                aliases: [
-                    "saitama",
-                    "one punch man"
-                ],
-                anime: "One Punch Man",
-                imageId: 35,
-                clues: [
-                    "He became a hero as a hobby.",
-                    "He is extremely powerful compared with most opponents.",
-                    "He can defeat many enemies with a single punch."
-                ]
-            },
-
-
-            {
-                name: "Izuku Midoriya",
-                aliases: [
-                    "izuku",
-                    "izuku midoriya",
-                    "deku"
-                ],
-                anime: "My Hero Academia",
-                imageId: 117909,
-                clues: [
-                    "He dreams of becoming a great hero.",
-                    "He initially appears to have no Quirk.",
-                    "He eventually inherits a powerful ability from All Might."
-                ]
-            },
-
-
-            {
-                name: "Killua Zoldyck",
-                aliases: [
-                    "killua",
-                    "killua zoldyck"
-                ],
-                anime: "Hunter x Hunter",
-                imageId: 27,
-                clues: [
-                    "He comes from a famous family of assassins.",
-                    "He becomes close friends with Gon.",
-                    "His Nen ability allows him to use electricity."
-                ]
-            },
-
-
-            {
-                name: "Sukuna",
-                aliases: [
-                    "sukuna",
-                    "ryomen sukuna",
-                    "ryomen"
-                ],
-                anime: "Jujutsu Kaisen",
-                imageId: 163875,
-                clues: [
-                    "He is known as the King of Curses.",
-                    "He has an unusual connection with Yuji Itadori.",
-                    "His markings make him instantly recognizable."
-                ]
-            },
-
-
-            {
-                name: "Edward Elric",
-                aliases: [
-                    "edward",
-                    "edward elric",
-                    "ed"
-                ],
-                anime: "Fullmetal Alchemist",
-                imageId: 1,
-                clues: [
-                    "He is a talented young alchemist.",
-                    "He travels with his younger brother.",
-                    "He has a mechanical arm and leg."
-                ]
-            }
-
-        ];
-
-
-
-        /* =====================================================
-           GAME VARIABLES
-        ===================================================== */
-
-        let currentCharacter;
-
-        let currentQuestion = 0;
-
-        let score = 0;
-
-        let lives = 3;
-
-        let streak = 0;
-
-        let timeLeft = 30;
-
-        let timer;
-
-        let usedCharacters = [];
-
-        let cluesRevealed = 1;
-
-        const totalQuestions = 10;
-
-
-
-        /* =====================================================
-           ELEMENTS
-        ===================================================== */
-
-        const image =
-            document.getElementById(
-                "characterImage"
-            );
-
-        const clue1 =
-            document.getElementById(
-                "clue1"
-            );
-
-        const clue2 =
-            document.getElementById(
-                "clue2"
-            );
-
-        const clue3 =
-            document.getElementById(
-                "clue3"
-            );
-
-        const clueBox2 =
-            document.getElementById(
-                "clueBox2"
-            );
-
-        const clueBox3 =
-            document.getElementById(
-                "clueBox3"
-            );
-
-        const input =
-            document.getElementById(
-                "answerInput"
-            );
-
-
-
-        /* =====================================================
-           LOAD CHARACTER IMAGE
-        ===================================================== */
-
-        async function loadCharacterImage(character) {
-
-            /*
-             * Jikan API:
-             *
-             * https://api.jikan.moe/v4/characters/{id}/full
-             *
-             * This retrieves the character's
-             * MyAnimeList image.
-             */
-
-            image.src =
-                `https://cdn.myanimelist.net/images/characters/${character.imageId}.jpg`;
-
-            /*
-             * Fallback if the direct image does not load.
-             */
-
-            image.onerror = async function() {
 
-                try {
+</main>
 
-                    const response =
-                        await fetch(
-                            `https://api.jikan.moe/v4/characters/${character.imageId}/full`
-                        );
 
-                    const data =
-                        await response.json();
+<!-- RESULT -->
 
-                    if (
-                        data &&
-                        data.data &&
-                        data.data.images &&
-                        data.data.images.jpg
-                    ) {
+<div
+    class="overlay"
+    id="overlay"
+>
 
-                        image.src =
-                            data.data.images.jpg.image_url;
+    <div class="result">
 
-                    }
+        <div class="badge">
+            CHALLENGE COMPLETE
+        </div>
 
-                }
+        <h2>
+            🎌 Results
+        </h2>
 
-                catch(error) {
+        <div
+            class="final-score"
+            id="finalScore"
+        >
+            0
+        </div>
 
-                    console.log(
-                        "Could not load image."
-                    );
+        <p>
+            FINAL SCORE
+        </p>
 
-                }
+        <p
+            class="rating"
+            id="rating"
+        >
+        </p>
 
-            };
+        <button
+            class="restart"
+            onclick="restart()"
+        >
+            PLAY AGAIN
+        </button>
 
-        }
+    </div>
 
+</div>
 
 
-        /* =====================================================
-           RANDOM CHARACTER
-        ===================================================== */
+<script>
 
-        function getRandomCharacter() {
+/* =========================================================
+   CHARACTER DATABASE
 
-            let available =
-                characters.filter(
-                    character =>
-                        !usedCharacters.includes(
-                            character.name
-                        )
-                );
+   IMPORTANT:
+   The clues deliberately avoid giving away
+   the character immediately.
+========================================================= */
 
+const characters = [
 
-            if (available.length === 0) {
+{
+    name: "Naruto Uzumaki",
 
-                usedCharacters = [];
+    answers: [
+        "naruto",
+        "naruto uzumaki"
+    ],
 
-                available = characters;
+    clues: [
 
-            }
+        "His childhood reputation was shaped by something inside him rather than something he had done.",
 
+        "He repeatedly turned techniques based on duplication into one of his greatest advantages.",
 
-            const random =
-                available[
-                    Math.floor(
-                        Math.random() *
-                        available.length
-                    )
-                ];
+        "His path eventually led him toward the title of Hokage."
+    ]
+},
 
 
-            usedCharacters.push(
-                random.name
-            );
+{
+    name: "Monkey D. Luffy",
 
+    answers: [
+        "luffy",
+        "monkey d luffy",
+        "monkey d. luffy"
+    ],
 
-            return random;
+    clues: [
 
-        }
+        "His greatest ambition is connected to a legendary treasure rather than political power.",
 
+        "His crew travels aboard the Thousand Sunny.",
 
+        "He eventually becomes one of the most notorious pirates of his era."
+    ]
+},
 
-        /* =====================================================
-           START QUESTION
-        ===================================================== */
 
-        function startQuestion() {
+{
+    name: "Goku",
 
-            if (
-                currentQuestion >= totalQuestions
-            ) {
+    answers: [
+        "goku",
+        "son goku"
+    ],
 
-                endGame();
+    clues: [
 
-                return;
+        "His origins are considerably different from what his childhood on Earth suggests.",
 
-            }
+        "A peculiar tail was once an important part of his appearance.",
 
+        "His battles eventually reached a scale involving gods and universes."
+    ]
+},
 
-            currentCharacter =
-                getRandomCharacter();
 
+{
+    name: "Gojo Satoru",
 
-            cluesRevealed = 1;
+    answers: [
+        "gojo",
+        "gojo satoru",
+        "satoru gojo"
+    ],
 
+    clues: [
 
-            document.getElementById(
-                "questionNumber"
-            ).textContent =
-                currentQuestion + 1;
+        "He inherited an ability that makes conventional attacks against him extremely difficult.",
 
+        "His students frequently have to deal with the consequences of his confidence.",
 
-            document.getElementById(
-                "progressFill"
-            ).style.width =
-                (
-                    currentQuestion /
-                    totalQuestions *
-                    100
-                ) + "%";
+        "His Domain Expansion is associated with an overwhelming amount of information."
+    ]
+},
 
 
-            clue1.textContent =
-                currentCharacter.clues[0];
+{
+    name: "Tanjiro Kamado",
 
-            clue2.textContent =
-                currentCharacter.clues[1];
+    answers: [
+        "tanjiro",
+        "tanjiro kamado"
+    ],
 
-            clue3.textContent =
-                currentCharacter.clues[2];
+    clues: [
 
+        "A family tragedy completely changes the direction of his life.",
 
-            clueBox2.classList.add(
-                "hidden-clue"
-            );
+        "His exceptional sense of smell becomes surprisingly useful.",
 
-            clueBox3.classList.add(
-                "hidden-clue"
-            );
+        "His greatest motivation is closely connected to his younger sister."
+    ]
+},
 
 
-            document.getElementById(
-                "message"
-            ).textContent = "";
+{
+    name: "Eren Yeager",
 
+    answers: [
+        "eren",
+        "eren yeager",
+        "eren jaeger"
+    ],
 
-            document.getElementById(
-                "nextButton"
-            ).style.display =
-                "none";
+    clues: [
 
+        "He begins with an intense desire to see the world beyond his confined home.",
 
-            input.value = "";
+        "A childhood tragedy permanently changes his attitude toward freedom.",
 
-            input.disabled = false;
+        "His relationship with the Titans becomes far more complicated than simply fighting them."
+    ]
+},
 
 
-            document.querySelector(
-                ".submit-btn"
-            ).disabled = false;
+{
+    name: "Light Yagami",
 
+    answers: [
+        "light",
+        "light yagami"
+    ],
 
-            loadCharacterImage(
-                currentCharacter
-            );
+    clues: [
 
+        "His extraordinary intelligence becomes dangerous after an unexpected discovery.",
 
-            resetTimer();
+        "He develops a god complex while attempting to reshape society.",
 
+        "His greatest intellectual opponent communicates with the world through an unusual alias."
+    ]
+},
 
-            input.focus();
 
-        }
+{
+    name: "L",
 
+    answers: [
+        "l",
+        "lawliet",
+        "l lawliet"
+    ],
 
+    clues: [
 
-        /* =====================================================
-           TIMER
-        ===================================================== */
+        "He rarely appears publicly under his real identity.",
 
-        function resetTimer() {
+        "His investigation relies heavily on probability and psychological deduction.",
 
-            clearInterval(timer);
+        "He becomes obsessed with solving a case involving unexplained deaths."
+    ]
+},
 
-            timeLeft = 30;
 
-            document.getElementById(
-                "timer"
-            ).textContent =
-                timeLeft;
+{
+    name: "Levi Ackerman",
 
+    answers: [
+        "levi",
+        "levi ackerman"
+    ],
 
-            timer =
-                setInterval(
-                    function() {
+    clues: [
 
-                        timeLeft--;
+        "His reputation is based more on combat ability than leadership speeches.",
 
-                        document.getElementById(
-                            "timer"
-                        ).textContent =
-                            timeLeft;
+        "He belongs to a bloodline associated with exceptional physical ability.",
 
+        "His relationship with cleanliness is almost as famous as his fighting."
+    ]
+},
 
-                        if (
-                            timeLeft <= 5
-                        ) {
 
-                            document.getElementById(
-                                "timer"
-                            ).style.color =
-                                "#ff3d71";
+{
+    name: "Ichigo Kurosaki",
 
-                        }
+    answers: [
+        "ichigo",
+        "ichigo kurosaki"
+    ],
 
+    clues: [
 
-                        if (
-                            timeLeft <= 0
-                        ) {
+        "His unusual ability begins with something most people around him cannot perceive.",
 
-                            clearInterval(timer);
+        "His responsibilities become connected with the balance between worlds.",
 
-                            revealAnswer();
+        "His sword is considerably larger than a conventional katana."
+    ]
+},
 
-                        }
 
-                    },
-                    1000
-                );
+{
+    name: "Saitama",
 
-        }
+    answers: [
+        "saitama",
+        "one punch man"
+    ],
 
+    clues: [
 
+        "His greatest problem is not becoming stronger but finding opponents who challenge him.",
 
-        /* =====================================================
-           NORMALIZE ANSWER
-        ===================================================== */
+        "His training routine sounds almost comically ordinary.",
 
-        function normalize(text) {
+        "His appearance includes a completely ordinary hero costume despite his extraordinary strength."
+    ]
+},
 
-            return text
-                .toLowerCase()
-                .trim()
-                .replace(
-                    /[^a-z0-9 ]/g,
-                    ""
-                )
-                .replace(
-                    /\s+/g,
-                    " "
-                );
 
-        }
+{
+    name: "Izuku Midoriya",
 
+    answers: [
+        "izuku",
+        "izuku midoriya",
+        "deku"
+    ],
 
+    clues: [
 
-        /* =====================================================
-           CHECK ANSWER
-        ===================================================== */
+        "He begins his journey believing that a certain career is impossible for him.",
 
-        function checkAnswer() {
+        "His notebooks reveal an unusual obsession with analysing other people's abilities.",
 
-            if (
-                !currentCharacter ||
-                input.disabled
-            ) {
+        "His power is inherited rather than originally belonging to him."
+    ]
+},
 
-                return;
 
-            }
+{
+    name: "Killua Zoldyck",
 
+    answers: [
+        "killua",
+        "killua zoldyck"
+    ],
 
-            const answer =
-                normalize(
-                    input.value
-                );
+    clues: [
 
+        "His childhood education was far removed from an ordinary school curriculum.",
 
-            if (!answer) {
+        "He initially treats killing as a normal part of life.",
 
-                return;
+        "His closest friendship gradually changes his understanding of what he wants."
+    ]
+},
 
-            }
 
+{
+    name: "Edward Elric",
 
-            const correct =
-                currentCharacter.aliases.some(
-                    alias =>
-                        normalize(alias) ===
-                        answer
-                );
+    answers: [
+        "edward",
+        "edward elric",
+        "ed"
+    ],
 
+    clues: [
 
-            if (correct) {
+        "A failed attempt to break one of the most important rules of his world changes his body.",
 
-                handleCorrect();
+        "He becomes unusually young for someone holding a prestigious state position.",
 
-            }
+        "His missing limbs are replaced with mechanical prosthetics."
+    ]
+},
 
-            else {
 
-                handleWrong();
+{
+    name: "Roy Mustang",
 
-            }
+    answers: [
+        "roy",
+        "roy mustang"
+    ],
 
-        }
+    clues: [
 
+        "His ambition extends beyond his current military rank.",
 
+        "His fighting style depends on manipulating ignition rather than carrying a conventional weapon.",
 
-        /* =====================================================
-           CORRECT ANSWER
-        ===================================================== */
+        "He is closely associated with the title 'Flame Alchemist'."
+    ]
+},
 
-        function handleCorrect() {
 
-            clearInterval(timer);
+{
+    name: "Hisoka",
 
+    answers: [
+        "hisoka",
+        "hisoka morow"
+    ],
 
-            /*
-             * More points if fewer clues
-             * were needed.
-             */
+    clues: [
 
-            let points =
-                100 * cluesMultiplier();
+        "His motivations are often less predictable than his alliances.",
 
+        "He evaluates opponents according to how much potential they possess.",
 
-            /*
-             * Time bonus.
-             */
+        "His Nen ability has a name associated with something elastic and sticky."
+    ]
+},
 
-            points +=
-                timeLeft * 3;
 
+{
+    name: "Sukuna",
 
-            /*
-             * Streak bonus.
-             */
+    answers: [
+        "sukuna",
+        "ryomen sukuna",
+        "ryomen"
+    ],
 
-            points +=
-                streak * 25;
+    clues: [
 
+        "He is remembered as a terrifying figure from the golden age of jujutsu.",
 
-            score += points;
+        "His relationship with his vessel is far from cooperative.",
 
-            streak++;
+        "He is commonly referred to by a title involving royalty among curses."
+    ]
+},
 
 
-            document.getElementById(
-                "score"
-            ).textContent =
-                score;
+{
+    name: "Kakashi Hatake",
 
+    answers: [
+        "kakashi",
+        "kakashi hatake"
+    ],
 
-            document.getElementById(
-                "streak"
-            ).textContent =
-                streak + " 🔥";
+    clues: [
 
+        "He became famous for copying techniques despite not being born with them.",
 
-            document.getElementById(
-                "message"
-            ).innerHTML =
-                `✓ Correct! <strong>${currentCharacter.name}</strong>`;
+        "He trained a three-person team that later became exceptionally important.",
 
-            document.getElementById(
-                "message"
-            ).className =
-                "message success";
+        "His face is almost always partially hidden."
+    ]
+},
 
 
-            document.getElementById(
-                "gameCard"
-            ).classList.add(
-                "correct-animation"
-            );
+{
+    name: "Jotaro Kujo",
 
+    answers: [
+        "jotaro",
+        "jotaro kujo"
+    ],
 
-            setTimeout(
-                function() {
+    clues: [
 
-                    document.getElementById(
-                        "gameCard"
-                    ).classList.remove(
-                        "correct-animation"
-                    );
+        "He is known for remaining unusually calm during dangerous situations.",
 
-                },
-                500
-            );
+        "His supernatural ability fights alongside him rather than replacing him.",
 
+        "His Stand's incredible precision and speed become crucial during his battles."
+    ]
+},
 
-            createConfetti();
 
+{
+    name: "Roronoa Zoro",
 
-            revealAllClues();
+    answers: [
+        "zoro",
+        "roronoa zoro"
+    ],
 
+    clues: [
 
-            input.disabled = true;
+        "His ambition involves becoming the greatest in a particular combat discipline.",
 
+        "His sense of direction is notoriously unreliable.",
 
-            document.querySelector(
-                ".submit-btn"
-            ).disabled = true;
+        "He uses a fighting style involving three swords."
+    ]
+}
 
+];
 
-            document.getElementById(
-                "nextButton"
-            ).style.display =
-                "inline-block";
 
-        }
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
 
+let questions = [];
 
+let current = 0;
 
-        /* =====================================================
-           WRONG ANSWER
-        ===================================================== */
+let score = 0;
 
-        function handleWrong() {
+let lives = 3;
 
-            lives--;
+let streak = 0;
 
-            streak = 0;
+let time = 20;
 
+let timer;
 
-            updateLives();
+let revealed = 1;
 
+let hintUsed = false;
 
-            document.getElementById(
-                "streak"
-            ).textContent =
-                "0 🔥";
+let questionFinished = false;
 
 
-            document.getElementById(
-                "gameCard"
-            ).classList.add(
-                "wrong-animation"
-            );
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
+const scoreEl =
+document.getElementById("score");
 
-            setTimeout(
-                function() {
+const livesEl =
+document.getElementById("lives");
 
-                    document.getElementById(
-                        "gameCard"
-                    ).classList.remove(
-                        "wrong-animation"
-                    );
+const streakEl =
+document.getElementById("streak");
 
-                },
-                500
-            );
+const questionEl =
+document.getElementById("questionNumber");
 
+const timeEl =
+document.getElementById("time");
 
-            if (cluesRevealed === 1) {
+const progressEl =
+document.getElementById("progress");
 
-                cluesRevealed = 2;
+const difficultyEl =
+document.getElementById("difficulty");
 
-                clueBox2.classList.remove(
-                    "hidden-clue"
-                );
+const difficultyText =
+document.getElementById("difficultyText");
 
+const clue1 =
+document.getElementById("clue1");
 
-                document.getElementById(
-                    "message"
-                ).textContent =
-                    "❌ Wrong! Here's another clue.";
+const clue2 =
+document.getElementById("clue2");
 
-            }
+const clue3 =
+document.getElementById("clue3");
 
-            else if (
-                cluesRevealed === 2
-            ) {
+const clueBox2 =
+document.getElementById("clueBox2");
 
-                cluesRevealed = 3;
+const clueBox3 =
+document.getElementById("clueBox3");
 
-                clueBox3.classList.remove(
-                    "hidden-clue"
-                );
+const answer =
+document.getElementById("answer");
 
+const message =
+document.getElementById("message");
 
-                document.getElementById(
-                    "message"
-                ).textContent =
-                    "❌ Not quite. One final clue!";
+const timerBar =
+document.getElementById("timerBar");
 
-            }
+const nextButton =
+document.getElementById("nextButton");
 
-            else {
+const hintButton =
+document.getElementById("hintButton");
 
-                revealAnswer();
+const game =
+document.getElementById("game");
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array) {
+
+    return array
+        .map(value => ({
+            value,
+            sort: Math.random()
+        }))
+        .sort((a,b) => a.sort - b.sort)
+        .map(({value}) => value);
+
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startGame() {
+
+    questions =
+        shuffle([...characters]);
+
+    current = 0;
+
+    score = 0;
+
+    lives = 3;
+
+    streak = 0;
+
+    scoreEl.textContent = 0;
+
+    streakEl.textContent = "0 🔥";
+
+    updateLives();
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion() {
+
+    clearInterval(timer);
+
+    if(current >= questions.length) {
+
+        finishGame();
+
+        return;
+
+    }
+
+    revealed = 1;
+
+    hintUsed = false;
+
+    questionFinished = false;
+
+    const q =
+        questions[current];
+
+
+    questionEl.textContent =
+        `${current + 1}/20`;
+
+
+    progressEl.style.width =
+        `${(current / 20) * 100}%`;
+
+
+    /* Difficulty */
+
+    let difficulty;
+
+    if(current < 5) {
+
+        difficulty = "EASY";
+
+    }
+
+    else if(current < 10) {
+
+        difficulty = "MEDIUM";
+
+    }
+
+    else if(current < 15) {
+
+        difficulty = "HARD";
+
+    }
+
+    else {
+
+        difficulty = "EXTREME";
+
+    }
+
+
+    difficultyEl.textContent =
+        `DIFFICULTY: ${difficulty}`;
+
+    difficultyText.textContent =
+        difficulty;
+
+
+    /* Clues */
+
+    clue1.textContent =
+        q.clues[0];
+
+    clue2.textContent =
+        q.clues[1];
+
+    clue3.textContent =
+        q.clues[2];
+
+
+    clueBox2.classList.add("locked");
+
+    clueBox3.classList.add("locked");
+
+
+    /* Reset */
+
+    answer.value = "";
+
+    answer.disabled = false;
+
+    answer.focus();
+
+    message.textContent = "";
+
+    message.className = "message";
+
+    nextButton.style.display = "none";
+
+    hintButton.style.display = "block";
+
+    hintButton.disabled = false;
+
+    hintButton.textContent =
+        "💡 HINT (-50)";
+
+
+    /* Timer */
+
+    time = current >= 15 ? 15 : 20;
+
+    timeEl.textContent = time;
+
+    timerBar.style.width = "100%";
+
+    startTimer();
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    timer =
+        setInterval(() => {
+
+            time--;
+
+            timeEl.textContent =
+                time;
+
+
+            timerBar.style.width =
+                `${(time / (current >= 15 ? 15 : 20)) * 100}%`;
+
+
+            if(time <= 5) {
+
+                timeEl.style.color =
+                    "#ff4f8b";
 
             }
 
 
-            if (lives <= 0) {
+            if(time <= 0) {
 
-                endGame();
+                clearInterval(timer);
 
-            }
-
-        }
-
-
-
-        /* =====================================================
-           CLUE MULTIPLIER
-        ===================================================== */
-
-        function cluesMultiplier() {
-
-            if (cluesRevealed === 1) {
-
-                return 3;
+                timeUp();
 
             }
 
-            if (cluesRevealed === 2) {
+        },1000);
 
-                return 2;
+}
 
-            }
 
-            return 1;
+/* =========================================================
+   GUESS
+========================================================= */
 
-        }
+function guess() {
 
+    if(questionFinished)
+        return;
 
 
-        /* =====================================================
-           REVEAL ANSWER
-        ===================================================== */
+    const value =
+        normalize(answer.value);
 
-        function revealAnswer() {
 
-            clearInterval(timer);
+    if(!value)
+        return;
 
 
-            streak = 0;
+    const q =
+        questions[current];
 
 
-            document.getElementById(
-                "streak"
-            ).textContent =
-                "0 🔥";
-
-
-            document.getElementById(
-                "message"
-            ).innerHTML =
-                `The answer was <strong>${currentCharacter.name}</strong>`;
-
-            document.getElementById(
-                "message"
-            ).className =
-                "message error";
-
-
-            revealAllClues();
-
-
-            input.disabled = true;
-
-
-            document.querySelector(
-                ".submit-btn"
-            ).disabled = true;
-
-
-            document.getElementById(
-                "nextButton"
-            ).style.display =
-                "inline-block";
-
-        }
-
-
-
-        /* =====================================================
-           REVEAL ALL CLUES
-        ===================================================== */
-
-        function revealAllClues() {
-
-            clueBox2.classList.remove(
-                "hidden-clue"
-            );
-
-            clueBox3.classList.remove(
-                "hidden-clue"
-            );
-
-        }
-
-
-
-        /* =====================================================
-           NEXT QUESTION
-        ===================================================== */
-
-        function nextQuestion() {
-
-            currentQuestion++;
-
-            startQuestion();
-
-        }
-
-
-
-        /* =====================================================
-           LIVES
-        ===================================================== */
-
-        function updateLives() {
-
-            let hearts = "";
-
-            for (
-                let i = 0;
-                i < lives;
-                i++
-            ) {
-
-                hearts += "❤️";
-
-            }
-
-
-            for (
-                let i = lives;
-                i < 3;
-                i++
-            ) {
-
-                hearts += "🖤";
-
-            }
-
-
-            document.getElementById(
-                "lives"
-            ).textContent =
-                hearts;
-
-        }
-
-
-
-        /* =====================================================
-           CONFETTI
-        ===================================================== */
-
-        function createConfetti() {
-
-            for (
-                let i = 0;
-                i < 45;
-                i++
-            ) {
-
-                const piece =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                piece.className =
-                    "confetti";
-
-
-                piece.style.left =
-                    Math.random() * 100 +
-                    "%";
-
-
-                piece.style.background =
-                    [
-                        "#ff4f8b",
-                        "#7041ff",
-                        "#5df0a6",
-                        "#ffd166",
-                        "#ffffff"
-                    ][
-                        Math.floor(
-                            Math.random() * 5
-                        )
-                    ];
-
-
-                piece.style.animationDuration =
-                    (
-                        1.2 +
-                        Math.random() * 1.5
-                    ) + "s";
-
-
-                document.body.appendChild(
-                    piece
-                );
-
-
-                setTimeout(
-                    () => piece.remove(),
-                    3000
-                );
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           END GAME
-        ===================================================== */
-
-        function endGame() {
-
-            clearInterval(timer);
-
-
-            document.getElementById(
-                "finalScore"
-            ).textContent =
-                score;
-
-
-            document.getElementById(
-                "gameOver"
-            ).style.display =
-                "flex";
-
-        }
-
-
-
-        /* =====================================================
-           RESTART
-        ===================================================== */
-
-        function restartGame() {
-
-            score = 0;
-
-            lives = 3;
-
-            streak = 0;
-
-            currentQuestion = 0;
-
-            usedCharacters = [];
-
-
-            document.getElementById(
-                "score"
-            ).textContent =
-                "0";
-
-
-            document.getElementById(
-                "streak"
-            ).textContent =
-                "0 🔥";
-
-
-            updateLives();
-
-
-            document.getElementById(
-                "gameOver"
-            ).style.display =
-                "none";
-
-
-            startQuestion();
-
-        }
-
-
-
-        /* =====================================================
-           ENTER KEY
-        ===================================================== */
-
-        input.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    checkAnswer();
-
-                }
-
-            }
+    const correct =
+        q.answers.some(
+            name =>
+            normalize(name) === value
         );
 
 
+    if(correct) {
 
-        /* =====================================================
-           START GAME
-        ===================================================== */
+        correctAnswer();
 
-        updateLives();
+    }
 
-        startQuestion();
+    else {
+
+        wrongAnswer();
+
+    }
+
+}
 
 
-    </script>
+/* =========================================================
+   NORMALIZE
+========================================================= */
+
+function normalize(text) {
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9 ]/g,"")
+        .replace(/\s+/g," ");
+
+}
+
+
+/* =========================================================
+   CORRECT
+========================================================= */
+
+function correctAnswer() {
+
+    clearInterval(timer);
+
+    questionFinished = true;
+
+    answer.disabled = true;
+
+    hintButton.style.display = "none";
+
+    nextButton.style.display =
+        "block";
+
+
+    /*
+       Base score
+    */
+
+    let points = 100;
+
+
+    /*
+       Clue bonus
+    */
+
+    if(revealed === 1)
+        points += 150;
+
+    else if(revealed === 2)
+        points += 75;
+
+
+    /*
+       Time bonus
+    */
+
+    points += time * 5;
+
+
+    /*
+       Streak
+    */
+
+    points += streak * 30;
+
+
+    /*
+       Hint penalty
+    */
+
+    if(hintUsed)
+        points -= 50;
+
+
+    if(points < 25)
+        points = 25;
+
+
+    score += points;
+
+    streak++;
+
+
+    scoreEl.textContent =
+        score;
+
+    streakEl.textContent =
+        `${streak} 🔥`;
+
+
+    message.innerHTML =
+        `✓ CORRECT! +${points} points`;
+
+    message.className =
+        "message correct";
+
+
+    game.classList.add("correct-animation");
+
+
+    setTimeout(() => {
+
+        game.classList.remove(
+            "correct-animation"
+        );
+
+    },500);
+
+}
+
+
+/* =========================================================
+   WRONG
+========================================================= */
+
+function wrongAnswer() {
+
+    lives--;
+
+    streak = 0;
+
+    updateLives();
+
+    streakEl.textContent =
+        "0 🔥";
+
+
+    game.classList.add("shake");
+
+
+    setTimeout(() => {
+
+        game.classList.remove("shake");
+
+    },400);
+
+
+    if(revealed === 1) {
+
+        revealed = 2;
+
+        clueBox2.classList.remove(
+            "locked"
+        );
+
+        message.textContent =
+            "❌ Wrong. Another clue has been unlocked.";
+
+        message.className =
+            "message wrong";
+
+    }
+
+    else if(revealed === 2) {
+
+        revealed = 3;
+
+        clueBox3.classList.remove(
+            "locked"
+        );
+
+        message.textContent =
+            "❌ Still wrong. Final clue unlocked.";
+
+        message.className =
+            "message wrong";
+
+    }
+
+    else {
+
+        revealAnswer();
+
+    }
+
+
+    if(lives <= 0) {
+
+        /*
+           Don't immediately end the question.
+           Give the player a final chance to see
+           what they missed.
+        */
+
+        if(!questionFinished) {
+
+            setTimeout(() => {
+
+                revealAnswer();
+
+            },500);
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+function useHint() {
+
+    if(questionFinished)
+        return;
+
+
+    if(hintUsed)
+        return;
+
+
+    hintUsed = true;
+
+
+    score -= 50;
+
+
+    if(score < 0)
+        score = 0;
+
+
+    scoreEl.textContent =
+        score;
+
+
+    const q =
+        questions[current];
+
+
+    /*
+       Give the first letter and anime.
+       But don't give the character name.
+    */
+
+    const firstLetter =
+        q.name.charAt(0);
+
+
+    message.innerHTML =
+        `💡 The character's name starts with <strong>${firstLetter}</strong>.`;
+
+
+    message.className =
+        "message info";
+
+
+    hintButton.textContent =
+        "HINT USED";
+
+    hintButton.disabled = true;
+
+}
+
+
+/* =========================================================
+   TIME UP
+========================================================= */
+
+function timeUp() {
+
+    if(questionFinished)
+        return;
+
+
+    questionFinished = true;
+
+    answer.disabled = true;
+
+    hintButton.style.display =
+        "none";
+
+    nextButton.style.display =
+        "block";
+
+
+    streak = 0;
+
+    streakEl.textContent =
+        "0 🔥";
+
+
+    revealAll();
+
+
+    message.innerHTML =
+        `⏱️ TIME UP! The answer was <strong>${questions[current].name}</strong>.`;
+
+    message.className =
+        "message wrong";
+
+}
+
+
+/* =========================================================
+   REVEAL ANSWER
+========================================================= */
+
+function revealAnswer() {
+
+    clearInterval(timer);
+
+    questionFinished = true;
+
+    answer.disabled = true;
+
+    hintButton.style.display =
+        "none";
+
+    nextButton.style.display =
+        "block";
+
+
+    revealAll();
+
+
+    message.innerHTML =
+        `❌ The answer was <strong>${questions[current].name}</strong>.`;
+
+    message.className =
+        "message wrong";
+
+}
+
+
+/* =========================================================
+   REVEAL ALL
+========================================================= */
+
+function revealAll() {
+
+    clueBox2.classList.remove(
+        "locked"
+    );
+
+    clueBox3.classList.remove(
+        "locked"
+    );
+
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion() {
+
+    current++;
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   LIVES
+========================================================= */
+
+function updateLives() {
+
+    let hearts = "";
+
+    for(let i = 0; i < 3; i++) {
+
+        if(i < lives)
+            hearts += "❤️";
+
+        else
+            hearts += "🖤";
+
+    }
+
+    livesEl.textContent =
+        hearts;
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame() {
+
+    clearInterval(timer);
+
+    document.getElementById(
+        "overlay"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        score;
+
+
+    let rating;
+
+    if(score >= 6500) {
+
+        rating =
+        "🏆 ANIME MASTER<br>You're operating at an absurd level.";
+
+    }
+
+    else if(score >= 5000) {
+
+        rating =
+        "🔥 OTAKU ELITE<br>Your anime knowledge is seriously strong.";
+
+    }
+
+    else if(score >= 3500) {
+
+        rating =
+        "⚔️ VETERAN<br>You know your anime, but the hardest rounds caught you.";
+
+    }
+
+    else if(score >= 2000) {
+
+        rating =
+        "🎌 FAN<br>Solid knowledge. More difficult characters exposed the gaps.";
+
+    }
+
+    else {
+
+        rating =
+        "📺 CASUAL VIEWER<br>Time to expand the watchlist.";
+
+    }
+
+
+    document.getElementById(
+        "rating"
+    ).innerHTML =
+        rating;
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restart() {
+
+    document.getElementById(
+        "overlay"
+    ).style.display =
+        "none";
+
+    startGame();
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+answer.addEventListener(
+    "keydown",
+    function(event) {
+
+        if(event.key === "Enter") {
+
+            guess();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+startGame();
+
+</script>
 
 </body>
 
