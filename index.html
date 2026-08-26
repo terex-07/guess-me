@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Who Am I? — Anime Edition</title>
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(112, 65, 255, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(255, 55, 125, 0.18),
+                    transparent 30%
+                ),
+                #080914;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        .background-glow {
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: 0.15;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+        }
+
+
+        .glow-one {
+
+            background: #7041ff;
+
+            top: -200px;
+            left: -200px;
+
+        }
+
+
+        .glow-two {
+
+            background: #ff357d;
+
+            bottom: -200px;
+            right: -200px;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        nav {
+
+            width: 100%;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                rgba(8,9,20,0.75);
+
+            backdrop-filter: blur(15px);
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+
+            color: #ff4f8b;
+        }
+
+
+        .nav-right {
+
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+
+        .nav-stat {
+
+            color: #bfc3d9;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+
+            width: min(1100px, 92%);
+
+            margin: 0 auto;
+
+            padding: 45px 0 70px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .game-header {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 7px 15px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,79,139,0.12);
+
+            border:
+                1px solid rgba(255,79,139,0.3);
+
+            color: #ff6a9d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(40px, 7vw, 72px);
+
+            line-height: 1;
+
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #c8b9ff,
+                    #ff6a9d
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .subtitle {
+
+            color: #9da3bd;
+
+            font-size: 16px;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           GAME HUD
+        ===================================================== */
+
+        .hud {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .hud-card {
+
+            background:
+                rgba(255,255,255,0.05);
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            text-align: center;
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .hud-label {
+
+            color: #858ba5;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .hud-value {
+
+            font-size: 22px;
+
+            font-weight: 800;
+        }
+
+
+        #timer {
+
+            color: #ff658f;
+        }
+
+
+        /* =====================================================
+           GAME CARD
+        ===================================================== */
+
+        .game-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            border-radius: 25px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.35);
+
+            backdrop-filter: blur(18px);
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .progress-info {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #8d93ad;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 6px;
+
+            background: #202236;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            margin-bottom: 25px;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7041ff,
+                    #ff4f8b
+                );
+
+            transition:
+                width 0.4s ease;
+        }
+
+
+        /* =====================================================
+           CHARACTER AREA
+        ===================================================== */
+
+        .character-area {
+
+            display: grid;
+
+            grid-template-columns:
+                0.9fr 1.1fr;
+
+            gap: 35px;
+
+            align-items: center;
+        }
+
+
+        .character-photo {
+
+            height: 480px;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #16182a,
+                    #0e0f1b
+                );
+
+            position: relative;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+
+        .character-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.5s ease,
+                filter 0.5s ease;
+
+            filter:
+                brightness(0.72)
+                saturate(1.15);
+        }
+
+
+        .character-photo:hover img {
+
+            transform: scale(1.04);
+
+        }
+
+
+        .photo-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5,5,12,0.8),
+                    transparent 55%
+                );
+
+            pointer-events: none;
+        }
+
+
+        .mystery-label {
+
+            position: absolute;
+
+            top: 18px;
+
+            left: 18px;
+
+            padding: 8px 13px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(0,0,0,0.55);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        .question-mark {
+
+            position: absolute;
+
+            font-size: 90px;
+
+            font-weight: 900;
+
+            color: rgba(255,255,255,0.08);
+
+            user-select: none;
+        }
+
+
+        /* =====================================================
+           CLUES
+        ===================================================== */
+
+        .question-area {
+
+            padding: 5px 5px 5px 0;
+        }
+
+
+        .question-title {
+
+            color: #8f95af;
+
+            text-transform: uppercase;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .clue-box {
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 12px;
+
+            display: flex;
+
+            gap: 14px;
+
+            align-items: flex-start;
+
+            transition: 0.3s;
+        }
+
+
+        .clue-number {
+
+            min-width: 30px;
+
+            height: 30px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(112,65,255,0.18);
+
+            color: #ad96ff;
+
+            font-weight: bold;
+
+            font-size: 13px;
+        }
+
+
+        .clue-text {
+
+            color: #d8dbea;
+
+            line-height: 1.5;
+
+            font-size: 15px;
+        }
+
+
+        .hidden-clue {
+
+            filter: blur(7px);
+
+            user-select: none;
+
+            opacity: 0.25;
+
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .answer-form {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        #answerInput {
+
+            flex: 1;
+
+            background:
+                rgba(0,0,0,0.25);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            color: white;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+
+        #answerInput:focus {
+
+            border-color: #7041ff;
+
+            box-shadow:
+                0 0 0 3px rgba(112,65,255,0.12);
+        }
+
+
+        #answerInput::placeholder {
+
+            color: #656b84;
+        }
+
+
+        .submit-btn {
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 0 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7041ff,
+                    #9c65ff
+                );
+
+            color: white;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+        }
+
+
+        .submit-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(112,65,255,0.3);
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .message {
+
+            min-height: 25px;
+
+            margin-top: 14px;
+
+            font-weight: 700;
+
+            font-size: 14px;
+        }
+
+
+        .success {
+
+            color: #5df0a6;
+        }
+
+
+        .error {
+
+            color: #ff658f;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .bottom-actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 25px;
+
+        }
+
+
+        .next-btn {
+
+            border: none;
+
+            background:
+                #ffffff;
+
+            color: #111321;
+
+            padding: 13px 25px;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            display: none;
+
+            transition: 0.25s;
+        }
+
+
+        .next-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           GAME OVER
+        ===================================================== */
+
+        .game-over {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(4,5,12,0.88);
+
+            backdrop-filter: blur(15px);
+
+            z-index: 100;
+        }
+
+
+        .game-over-card {
+
+            width: min(500px, 90%);
+
+            background:
+                #111322;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            border-radius: 25px;
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.5);
+
+            animation:
+                popup 0.4s ease;
+        }
+
+
+        .game-over-card h2 {
+
+            font-size: 42px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .final-score {
+
+            font-size: 60px;
+
+            font-weight: 900;
+
+            color: #ff5d91;
+
+            margin: 15px 0;
+        }
+
+
+        .restart-btn {
+
+            border: none;
+
+            padding: 14px 30px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7041ff,
+                    #ff4f8b
+                );
+
+            color: white;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            margin-top: 15px;
+        }
+
+
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+
+        @keyframes popup {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.85);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        @keyframes correct {
+
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.03);
+            }
+
+            60% {
+                transform: scale(0.98);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        @keyframes shake {
+
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-10px);
+            }
+
+            40% {
+                transform: translateX(10px);
+            }
+
+            60% {
+                transform: translateX(-7px);
+            }
+
+            80% {
+                transform: translateX(7px);
+            }
+
+        }
+
+
+        .correct-animation {
+
+            animation:
+                correct 0.5s ease;
+
+        }
+
+
+        .wrong-animation {
+
+            animation:
+                shake 0.45s ease;
+
+        }
+
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        .confetti {
+
+            position: fixed;
+
+            width: 8px;
+
+            height: 12px;
+
+            top: -20px;
+
+            z-index: 200;
+
+            animation:
+                fall 2s linear forwards;
+
+        }
+
+
+        @keyframes fall {
+
+            to {
+
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .character-area {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .character-photo {
+
+                height: 380px;
+
+            }
+
+
+            .hud {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            nav {
+
+                padding: 0 20px;
+
+            }
+
+
+            .nav-right {
+
+                display: none;
+
+            }
+
+
+            main {
+
+                width: 94%;
+
+            }
+
+
+            .game-card {
+
+                padding: 15px;
+
+            }
+
+
+            .character-photo {
+
+                height: 330px;
+
+            }
+
+
+            .answer-form {
+
+                flex-direction: column;
+
+            }
+
+
+            .submit-btn {
+
+                height: 50px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="background-glow glow-one"></div>
+
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav>
+
+        <div class="logo">
+            WHO <span>AM I?</span>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="nav-stat">
+                🎌 Anime Edition
+            </div>
+
+            <div class="nav-stat">
+                v1.0
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+        <section class="game-header">
+
+            <div class="badge">
+                🔥 GUESS THE CHARACTER
+            </div>
+
+            <h1>
+                Who Am I?
+            </h1>
+
+            <p class="subtitle">
+
+                Think you know anime?
+
+                Identify the character from their clues
+                and prove your knowledge of the anime world.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             HUD
+        ================================================== -->
+
+        <section class="hud">
+
+            <div class="hud-card">
+
+                <div class="hud-label">
+                    Score
+                </div>
+
+                <div
+                    class="hud-value"
+                    id="score"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="hud-card">
+
+                <div class="hud-label">
+                    Lives
+                </div>
+
+                <div
+                    class="hud-value"
+                    id="lives"
+                >
+                    ❤️❤️❤️
+                </div>
+
+            </div>
+
+
+            <div class="hud-card">
+
+                <div class="hud-label">
+                    Streak
+                </div>
+
+                <div
+                    class="hud-value"
+                    id="streak"
+                >
+                    0 🔥
+                </div>
+
+            </div>
+
+
+            <div class="hud-card">
+
+                <div class="hud-label">
+                    Time
+                </div>
+
+                <div
+                    class="hud-value"
+                    id="timer"
+                >
+                    30
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GAME CARD
+        ================================================== -->
+
+        <section class="game-card" id="gameCard">
+
+
+            <div class="progress-info">
+
+                <span>
+                    Question
+                    <span id="questionNumber">1</span>
+                    / 10
+                </span>
+
+                <span>
+                    Anime Character
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+
+            </div>
+
+
+
+            <div class="character-area">
+
+
+                <!-- CHARACTER -->
+
+                <div class="character-photo">
+
+                    <img
+                        id="characterImage"
+                        src=""
+                        alt="Mystery anime character"
+                    >
+
+                    <div class="photo-overlay"></div>
+
+                    <div class="mystery-label">
+                        MYSTERY CHARACTER
+                    </div>
+
+                    <div class="question-mark">
+                        ?
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUESTION -->
+
+                <div class="question-area">
+
+                    <div class="question-title">
+                        WHO AM I?
+                    </div>
+
+
+                    <div class="clue-box">
+
+                        <div class="clue-number">
+                            1
+                        </div>
+
+                        <div
+                            class="clue-text"
+                            id="clue1"
+                        >
+                            Loading clue...
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="clue-box hidden-clue"
+                        id="clueBox2"
+                    >
+
+                        <div class="clue-number">
+                            2
+                        </div>
+
+                        <div
+                            class="clue-text"
+                            id="clue2"
+                        >
+                            More clues will appear after an incorrect guess.
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="clue-box hidden-clue"
+                        id="clueBox3"
+                    >
+
+                        <div class="clue-number">
+                            3
+                        </div>
+
+                        <div
+                            class="clue-text"
+                            id="clue3"
+                        >
+                            One final clue...
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ANSWER -->
+
+                    <div class="answer-form">
+
+                        <input
+                            type="text"
+                            id="answerInput"
+                            placeholder="Enter character name..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            class="submit-btn"
+                            onclick="checkAnswer()"
+                        >
+                            GUESS
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="message"
+                        id="message"
+                    ></div>
+
+
+                    <div class="bottom-actions">
+
+                        <button
+                            class="next-btn"
+                            id="nextButton"
+                            onclick="nextQuestion()"
+                        >
+                            NEXT CHARACTER →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         GAME OVER
+    ====================================================== -->
+
+    <div
+        class="game-over"
+        id="gameOver"
+    >
+
+        <div class="game-over-card">
+
+            <div class="badge">
+                GAME COMPLETE
+            </div>
+
+            <h2>
+                🎌 Nice Run!
+            </h2>
+
+            <p>
+                You finished the anime challenge.
+            </p>
+
+            <div
+                class="final-score"
+                id="finalScore"
+            >
+                0
+            </div>
+
+            <p>
+                Final Score
+            </p>
+
+            <button
+                class="restart-btn"
+                onclick="restartGame()"
+            >
+                PLAY AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           CHARACTER DATABASE
+        =====================================================
+
+           These are popular anime characters.
+
+           The image is loaded from Jikan/MyAnimeList
+           automatically using the character ID.
+
+        ====================================================== */
+
+
+        const characters = [
+
+            {
+                name: "Naruto Uzumaki",
+                aliases: [
+                    "naruto",
+                    "naruto uzumaki"
+                ],
+                anime: "Naruto",
+                imageId: 20,
+                clues: [
+                    "He grew up dreaming of becoming the leader of his village.",
+                    "He has a powerful creature sealed inside him.",
+                    "His signature techniques include the Rasengan and Shadow Clone Jutsu."
+                ]
+            },
+
+
+            {
+                name: "Monkey D. Luffy",
+                aliases: [
+                    "luffy",
+                    "monkey d luffy",
+                    "monkey d. luffy"
+                ],
+                anime: "One Piece",
+                imageId: 40,
+                clues: [
+                    "He dreams of finding a legendary treasure.",
+                    "He wants to become the Pirate King.",
+                    "His body gained unusual abilities after eating a Devil Fruit."
+                ]
+            },
+
+
+            {
+                name: "Goku",
+                aliases: [
+                    "goku",
+                    "son goku"
+                ],
+                anime: "Dragon Ball",
+                imageId: 246,
+                clues: [
+                    "He is a Saiyan raised on Earth.",
+                    "He loves martial arts and constantly searches for stronger opponents.",
+                    "His famous transformations include Super Saiyan."
+                ]
+            },
+
+
+            {
+                name: "Gojo Satoru",
+                aliases: [
+                    "gojo",
+                    "gojo satoru",
+                    "satoru gojo"
+                ],
+                anime: "Jujutsu Kaisen",
+                imageId: 164909,
+                clues: [
+                    "He is a teacher at Tokyo Jujutsu High.",
+                    "He is famous for his powerful inherited technique.",
+                    "He is commonly seen wearing a blindfold."
+                ]
+            },
+
+
+            {
+                name: "Tanjiro Kamado",
+                aliases: [
+                    "tanjiro",
+                    "tanjiro kamado"
+                ],
+                anime: "Demon Slayer",
+                imageId: 146156,
+                clues: [
+                    "His family was attacked by demons.",
+                    "He joins a group of demon hunters.",
+                    "His sister accompanies him despite becoming a demon."
+                ]
+            },
+
+
+            {
+                name: "Eren Yeager",
+                aliases: [
+                    "eren",
+                    "eren yeager",
+                    "eren jaeger"
+                ],
+                anime: "Attack on Titan",
+                imageId: 40882,
+                clues: [
+                    "He lives inside enormous walls.",
+                    "He joins a military organization after a devastating attack.",
+                    "He possesses the ability to transform into a Titan."
+                ]
+            },
+
+
+            {
+                name: "Light Yagami",
+                aliases: [
+                    "light",
+                    "light yagami"
+                ],
+                anime: "Death Note",
+                imageId: 80,
+                clues: [
+                    "He discovers a supernatural notebook.",
+                    "The notebook has the power to kill people whose names are written in it.",
+                    "He begins calling himself Kira."
+                ]
+            },
+
+
+            {
+                name: "L",
+                aliases: [
+                    "l",
+                    "lawliet",
+                    "l lawliet"
+                ],
+                anime: "Death Note",
+                imageId: 71,
+                clues: [
+                    "He is one of the world's greatest detectives.",
+                    "He investigates the mysterious Kira case.",
+                    "He has an unusual sitting posture and a huge sweet tooth."
+                ]
+            },
+
+
+            {
+                name: "Levi Ackerman",
+                aliases: [
+                    "levi",
+                    "levi ackerman"
+                ],
+                anime: "Attack on Titan",
+                imageId: 45627,
+                clues: [
+                    "He is a highly respected soldier.",
+                    "He is known for his exceptional combat skills.",
+                    "He is particularly obsessed with cleanliness."
+                ]
+            },
+
+
+            {
+                name: "Ichigo Kurosaki",
+                aliases: [
+                    "ichigo",
+                    "ichigo kurosaki"
+                ],
+                anime: "Bleach",
+                imageId: 5,
+                clues: [
+                    "He can see supernatural beings.",
+                    "He becomes involved with Soul Reapers.",
+                    "His signature sword is called Zangetsu."
+                ]
+            },
+
+
+            {
+                name: "Saitama",
+                aliases: [
+                    "saitama",
+                    "one punch man"
+                ],
+                anime: "One Punch Man",
+                imageId: 35,
+                clues: [
+                    "He became a hero as a hobby.",
+                    "He is extremely powerful compared with most opponents.",
+                    "He can defeat many enemies with a single punch."
+                ]
+            },
+
+
+            {
+                name: "Izuku Midoriya",
+                aliases: [
+                    "izuku",
+                    "izuku midoriya",
+                    "deku"
+                ],
+                anime: "My Hero Academia",
+                imageId: 117909,
+                clues: [
+                    "He dreams of becoming a great hero.",
+                    "He initially appears to have no Quirk.",
+                    "He eventually inherits a powerful ability from All Might."
+                ]
+            },
+
+
+            {
+                name: "Killua Zoldyck",
+                aliases: [
+                    "killua",
+                    "killua zoldyck"
+                ],
+                anime: "Hunter x Hunter",
+                imageId: 27,
+                clues: [
+                    "He comes from a famous family of assassins.",
+                    "He becomes close friends with Gon.",
+                    "His Nen ability allows him to use electricity."
+                ]
+            },
+
+
+            {
+                name: "Sukuna",
+                aliases: [
+                    "sukuna",
+                    "ryomen sukuna",
+                    "ryomen"
+                ],
+                anime: "Jujutsu Kaisen",
+                imageId: 163875,
+                clues: [
+                    "He is known as the King of Curses.",
+                    "He has an unusual connection with Yuji Itadori.",
+                    "His markings make him instantly recognizable."
+                ]
+            },
+
+
+            {
+                name: "Edward Elric",
+                aliases: [
+                    "edward",
+                    "edward elric",
+                    "ed"
+                ],
+                anime: "Fullmetal Alchemist",
+                imageId: 1,
+                clues: [
+                    "He is a talented young alchemist.",
+                    "He travels with his younger brother.",
+                    "He has a mechanical arm and leg."
+                ]
+            }
+
+        ];
+
+
+
+        /* =====================================================
+           GAME VARIABLES
+        ===================================================== */
+
+        let currentCharacter;
+
+        let currentQuestion = 0;
+
+        let score = 0;
+
+        let lives = 3;
+
+        let streak = 0;
+
+        let timeLeft = 30;
+
+        let timer;
+
+        let usedCharacters = [];
+
+        let cluesRevealed = 1;
+
+        const totalQuestions = 10;
+
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const image =
+            document.getElementById(
+                "characterImage"
+            );
+
+        const clue1 =
+            document.getElementById(
+                "clue1"
+            );
+
+        const clue2 =
+            document.getElementById(
+                "clue2"
+            );
+
+        const clue3 =
+            document.getElementById(
+                "clue3"
+            );
+
+        const clueBox2 =
+            document.getElementById(
+                "clueBox2"
+            );
+
+        const clueBox3 =
+            document.getElementById(
+                "clueBox3"
+            );
+
+        const input =
+            document.getElementById(
+                "answerInput"
+            );
+
+
+
+        /* =====================================================
+           LOAD CHARACTER IMAGE
+        ===================================================== */
+
+        async function loadCharacterImage(character) {
+
+            /*
+             * Jikan API:
+             *
+             * https://api.jikan.moe/v4/characters/{id}/full
+             *
+             * This retrieves the character's
+             * MyAnimeList image.
+             */
+
+            image.src =
+                `https://cdn.myanimelist.net/images/characters/${character.imageId}.jpg`;
+
+            /*
+             * Fallback if the direct image does not load.
+             */
+
+            image.onerror = async function() {
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `https://api.jikan.moe/v4/characters/${character.imageId}/full`
+                        );
+
+                    const data =
+                        await response.json();
+
+                    if (
+                        data &&
+                        data.data &&
+                        data.data.images &&
+                        data.data.images.jpg
+                    ) {
+
+                        image.src =
+                            data.data.images.jpg.image_url;
+
+                    }
+
+                }
+
+                catch(error) {
+
+                    console.log(
+                        "Could not load image."
+                    );
+
+                }
+
+            };
+
+        }
+
+
+
+        /* =====================================================
+           RANDOM CHARACTER
+        ===================================================== */
+
+        function getRandomCharacter() {
+
+            let available =
+                characters.filter(
+                    character =>
+                        !usedCharacters.includes(
+                            character.name
+                        )
+                );
+
+
+            if (available.length === 0) {
+
+                usedCharacters = [];
+
+                available = characters;
+
+            }
+
+
+            const random =
+                available[
+                    Math.floor(
+                        Math.random() *
+                        available.length
+                    )
+                ];
+
+
+            usedCharacters.push(
+                random.name
+            );
+
+
+            return random;
+
+        }
+
+
+
+        /* =====================================================
+           START QUESTION
+        ===================================================== */
+
+        function startQuestion() {
+
+            if (
+                currentQuestion >= totalQuestions
+            ) {
+
+                endGame();
+
+                return;
+
+            }
+
+
+            currentCharacter =
+                getRandomCharacter();
+
+
+            cluesRevealed = 1;
+
+
+            document.getElementById(
+                "questionNumber"
+            ).textContent =
+                currentQuestion + 1;
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                (
+                    currentQuestion /
+                    totalQuestions *
+                    100
+                ) + "%";
+
+
+            clue1.textContent =
+                currentCharacter.clues[0];
+
+            clue2.textContent =
+                currentCharacter.clues[1];
+
+            clue3.textContent =
+                currentCharacter.clues[2];
+
+
+            clueBox2.classList.add(
+                "hidden-clue"
+            );
+
+            clueBox3.classList.add(
+                "hidden-clue"
+            );
+
+
+            document.getElementById(
+                "message"
+            ).textContent = "";
+
+
+            document.getElementById(
+                "nextButton"
+            ).style.display =
+                "none";
+
+
+            input.value = "";
+
+            input.disabled = false;
+
+
+            document.querySelector(
+                ".submit-btn"
+            ).disabled = false;
+
+
+            loadCharacterImage(
+                currentCharacter
+            );
+
+
+            resetTimer();
+
+
+            input.focus();
+
+        }
+
+
+
+        /* =====================================================
+           TIMER
+        ===================================================== */
+
+        function resetTimer() {
+
+            clearInterval(timer);
+
+            timeLeft = 30;
+
+            document.getElementById(
+                "timer"
+            ).textContent =
+                timeLeft;
+
+
+            timer =
+                setInterval(
+                    function() {
+
+                        timeLeft--;
+
+                        document.getElementById(
+                            "timer"
+                        ).textContent =
+                            timeLeft;
+
+
+                        if (
+                            timeLeft <= 5
+                        ) {
+
+                            document.getElementById(
+                                "timer"
+                            ).style.color =
+                                "#ff3d71";
+
+                        }
+
+
+                        if (
+                            timeLeft <= 0
+                        ) {
+
+                            clearInterval(timer);
+
+                            revealAnswer();
+
+                        }
+
+                    },
+                    1000
+                );
+
+        }
+
+
+
+        /* =====================================================
+           NORMALIZE ANSWER
+        ===================================================== */
+
+        function normalize(text) {
+
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(
+                    /[^a-z0-9 ]/g,
+                    ""
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                );
+
+        }
+
+
+
+        /* =====================================================
+           CHECK ANSWER
+        ===================================================== */
+
+        function checkAnswer() {
+
+            if (
+                !currentCharacter ||
+                input.disabled
+            ) {
+
+                return;
+
+            }
+
+
+            const answer =
+                normalize(
+                    input.value
+                );
+
+
+            if (!answer) {
+
+                return;
+
+            }
+
+
+            const correct =
+                currentCharacter.aliases.some(
+                    alias =>
+                        normalize(alias) ===
+                        answer
+                );
+
+
+            if (correct) {
+
+                handleCorrect();
+
+            }
+
+            else {
+
+                handleWrong();
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CORRECT ANSWER
+        ===================================================== */
+
+        function handleCorrect() {
+
+            clearInterval(timer);
+
+
+            /*
+             * More points if fewer clues
+             * were needed.
+             */
+
+            let points =
+                100 * cluesMultiplier();
+
+
+            /*
+             * Time bonus.
+             */
+
+            points +=
+                timeLeft * 3;
+
+
+            /*
+             * Streak bonus.
+             */
+
+            points +=
+                streak * 25;
+
+
+            score += points;
+
+            streak++;
+
+
+            document.getElementById(
+                "score"
+            ).textContent =
+                score;
+
+
+            document.getElementById(
+                "streak"
+            ).textContent =
+                streak + " 🔥";
+
+
+            document.getElementById(
+                "message"
+            ).innerHTML =
+                `✓ Correct! <strong>${currentCharacter.name}</strong>`;
+
+            document.getElementById(
+                "message"
+            ).className =
+                "message success";
+
+
+            document.getElementById(
+                "gameCard"
+            ).classList.add(
+                "correct-animation"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    document.getElementById(
+                        "gameCard"
+                    ).classList.remove(
+                        "correct-animation"
+                    );
+
+                },
+                500
+            );
+
+
+            createConfetti();
+
+
+            revealAllClues();
+
+
+            input.disabled = true;
+
+
+            document.querySelector(
+                ".submit-btn"
+            ).disabled = true;
+
+
+            document.getElementById(
+                "nextButton"
+            ).style.display =
+                "inline-block";
+
+        }
+
+
+
+        /* =====================================================
+           WRONG ANSWER
+        ===================================================== */
+
+        function handleWrong() {
+
+            lives--;
+
+            streak = 0;
+
+
+            updateLives();
+
+
+            document.getElementById(
+                "streak"
+            ).textContent =
+                "0 🔥";
+
+
+            document.getElementById(
+                "gameCard"
+            ).classList.add(
+                "wrong-animation"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    document.getElementById(
+                        "gameCard"
+                    ).classList.remove(
+                        "wrong-animation"
+                    );
+
+                },
+                500
+            );
+
+
+            if (cluesRevealed === 1) {
+
+                cluesRevealed = 2;
+
+                clueBox2.classList.remove(
+                    "hidden-clue"
+                );
+
+
+                document.getElementById(
+                    "message"
+                ).textContent =
+                    "❌ Wrong! Here's another clue.";
+
+            }
+
+            else if (
+                cluesRevealed === 2
+            ) {
+
+                cluesRevealed = 3;
+
+                clueBox3.classList.remove(
+                    "hidden-clue"
+                );
+
+
+                document.getElementById(
+                    "message"
+                ).textContent =
+                    "❌ Not quite. One final clue!";
+
+            }
+
+            else {
+
+                revealAnswer();
+
+            }
+
+
+            if (lives <= 0) {
+
+                endGame();
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CLUE MULTIPLIER
+        ===================================================== */
+
+        function cluesMultiplier() {
+
+            if (cluesRevealed === 1) {
+
+                return 3;
+
+            }
+
+            if (cluesRevealed === 2) {
+
+                return 2;
+
+            }
+
+            return 1;
+
+        }
+
+
+
+        /* =====================================================
+           REVEAL ANSWER
+        ===================================================== */
+
+        function revealAnswer() {
+
+            clearInterval(timer);
+
+
+            streak = 0;
+
+
+            document.getElementById(
+                "streak"
+            ).textContent =
+                "0 🔥";
+
+
+            document.getElementById(
+                "message"
+            ).innerHTML =
+                `The answer was <strong>${currentCharacter.name}</strong>`;
+
+            document.getElementById(
+                "message"
+            ).className =
+                "message error";
+
+
+            revealAllClues();
+
+
+            input.disabled = true;
+
+
+            document.querySelector(
+                ".submit-btn"
+            ).disabled = true;
+
+
+            document.getElementById(
+                "nextButton"
+            ).style.display =
+                "inline-block";
+
+        }
+
+
+
+        /* =====================================================
+           REVEAL ALL CLUES
+        ===================================================== */
+
+        function revealAllClues() {
+
+            clueBox2.classList.remove(
+                "hidden-clue"
+            );
+
+            clueBox3.classList.remove(
+                "hidden-clue"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           NEXT QUESTION
+        ===================================================== */
+
+        function nextQuestion() {
+
+            currentQuestion++;
+
+            startQuestion();
+
+        }
+
+
+
+        /* =====================================================
+           LIVES
+        ===================================================== */
+
+        function updateLives() {
+
+            let hearts = "";
+
+            for (
+                let i = 0;
+                i < lives;
+                i++
+            ) {
+
+                hearts += "❤️";
+
+            }
+
+
+            for (
+                let i = lives;
+                i < 3;
+                i++
+            ) {
+
+                hearts += "🖤";
+
+            }
+
+
+            document.getElementById(
+                "lives"
+            ).textContent =
+                hearts;
+
+        }
+
+
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        function createConfetti() {
+
+            for (
+                let i = 0;
+                i < 45;
+                i++
+            ) {
+
+                const piece =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                piece.className =
+                    "confetti";
+
+
+                piece.style.left =
+                    Math.random() * 100 +
+                    "%";
+
+
+                piece.style.background =
+                    [
+                        "#ff4f8b",
+                        "#7041ff",
+                        "#5df0a6",
+                        "#ffd166",
+                        "#ffffff"
+                    ][
+                        Math.floor(
+                            Math.random() * 5
+                        )
+                    ];
+
+
+                piece.style.animationDuration =
+                    (
+                        1.2 +
+                        Math.random() * 1.5
+                    ) + "s";
+
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(
+                    () => piece.remove(),
+                    3000
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           END GAME
+        ===================================================== */
+
+        function endGame() {
+
+            clearInterval(timer);
+
+
+            document.getElementById(
+                "finalScore"
+            ).textContent =
+                score;
+
+
+            document.getElementById(
+                "gameOver"
+            ).style.display =
+                "flex";
+
+        }
+
+
+
+        /* =====================================================
+           RESTART
+        ===================================================== */
+
+        function restartGame() {
+
+            score = 0;
+
+            lives = 3;
+
+            streak = 0;
+
+            currentQuestion = 0;
+
+            usedCharacters = [];
+
+
+            document.getElementById(
+                "score"
+            ).textContent =
+                "0";
+
+
+            document.getElementById(
+                "streak"
+            ).textContent =
+                "0 🔥";
+
+
+            updateLives();
+
+
+            document.getElementById(
+                "gameOver"
+            ).style.display =
+                "none";
+
+
+            startQuestion();
+
+        }
+
+
+
+        /* =====================================================
+           ENTER KEY
+        ===================================================== */
+
+        input.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    checkAnswer();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           START GAME
+        ===================================================== */
+
+        updateLives();
+
+        startQuestion();
+
+
+    </script>
+
+</body>
+
+</html>
